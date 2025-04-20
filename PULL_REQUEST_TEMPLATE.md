@@ -17,11 +17,41 @@ Provide a clear and concise description of the changes introduced by this pull r
 ---
 
 ### Service-Specific Checklist
-#### Composer
-- [ ] DAGs are tested for validity using `airflow dags validate`.
-- [ ] Environment variables and connections are securely managed (e.g., using Secret Manager).
-- [ ] Dependencies in `requirements.txt` are well-defined and version-locked.
+### Cloud Composer Checklist
+#### DAGs
+- [ ] DAGs pass validation using `airflow dags validate`.
+- [ ] DAG names are descriptive, follow naming conventions, and align with team standards.
+- [ ] DAG structure is modular and tasks are logically organized.
+- [ ] Task dependencies are clearly defined, with no circular dependencies.
+- [ ] Retries, SLAs, and schedules are appropriately configured for each DAG.
+- [ ] DAG parameters and default arguments are consistent and well-documented.
 
+#### Security
+- [ ] Environment variables, secrets, and connection credentials are securely managed (e.g., using Secret Manager or environment configurations).
+- [ ] GCP IAM roles and permissions follow the principle of least privilege.
+- [ ] DAGs avoid hardcoding sensitive data or credentials.
+
+#### Code Quality
+- [ ] Python code adheres to PEP 8 standards and is modularized for readability and reusability.
+- [ ] External libraries and dependencies in `requirements.txt` are version-locked and audited for vulnerabilities.
+- [ ] DAGs and Python scripts are optimized for performance, avoiding unnecessary overhead.
+
+#### Observability
+- [ ] Logging is implemented at appropriate levels (INFO, DEBUG, ERROR) for all tasks.
+- [ ] Monitoring and alerting mechanisms (e.g., Stackdriver alerts) are configured for critical tasks.
+- [ ] DAG execution success and failure scenarios are logged and reviewed.
+
+#### Testing
+- [ ] DAGs are tested with mock data for both positive and negative scenarios.
+- [ ] Python scripts and custom operators, if any, have associated unit tests.
+- [ ] Test cases for edge scenarios and failure handling are included.
+
+#### Performance
+- [ ] DAG task execution times are reviewed and optimized where possible.
+- [ ] Parallelization and task batching are implemented where applicable.
+- [ ] External API and database calls within tasks are optimized for efficiency.
+
+---
 #### BigQuery
 - [ ] SQL queries are optimized and reviewed for performance (e.g., using query execution plans).
 - [ ] Dataset permissions follow the principle of least privilege.
